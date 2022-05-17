@@ -164,9 +164,9 @@ namespace Squirrel
                     This.ApplyReleases(updateInfo, x => progress(x / 3 + 66)),
                     "Failed to apply updates");
 
-                await This.ErrorIfThrows(() => 
+                /*await This.ErrorIfThrows(() => 
                     This.CreateUninstallerRegistryEntry(),
-                    "Failed to set up uninstaller");
+                    "Failed to set up uninstaller");*/
             } catch {
                 if (ignoreDeltaUpdates == false) {
                     ignoreDeltaUpdates = true;

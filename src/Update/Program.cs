@@ -182,8 +182,8 @@ namespace Squirrel.Update
 
                 await mgr.FullInstall(silentInstall, progressSource.Raise);
 
-                await this.ErrorIfThrows(() => mgr.CreateUninstallerRegistryEntry(),
-                    "Failed to create uninstaller registry entry");
+                /*await this.ErrorIfThrows(() => mgr.CreateUninstallerRegistryEntry(),
+                    "Failed to create uninstaller registry entry");*/
             }
         }
 
@@ -220,9 +220,9 @@ namespace Squirrel.Update
 
                 var updateTarget = Path.Combine(mgr.RootAppDirectory, "Update.exe");
 
-                await this.ErrorIfThrows(() =>
+                /*await this.ErrorIfThrows(() =>
                     mgr.CreateUninstallerRegistryEntry(),
-                    "Failed to create uninstaller registry entry");
+                    "Failed to create uninstaller registry entry");*/
             }
         }
 

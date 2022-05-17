@@ -95,14 +95,16 @@ namespace Squirrel
 
         public Task<RegistryKey> CreateUninstallerRegistryEntry(string uninstallCmd, string quietSwitch)
         {
-            var installHelpers = new InstallHelperImpl(applicationName, rootAppDirectory);
-            return installHelpers.CreateUninstallerRegistryEntry(uninstallCmd, quietSwitch);
+            /*var installHelpers = new InstallHelperImpl(applicationName, rootAppDirectory);
+            return installHelpers.CreateUninstallerRegistryEntry(uninstallCmd, quietSwitch);*/
+            return Task.Run(() => RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Default).CreateSubKey(@"Software\" + "\\" + applicationName, RegistryKeyPermissionCheck.ReadWriteSubTree));
         }
 
         public Task<RegistryKey> CreateUninstallerRegistryEntry()
         {
-            var installHelpers = new InstallHelperImpl(applicationName, rootAppDirectory);
-            return installHelpers.CreateUninstallerRegistryEntry();
+            /*var installHelpers = new InstallHelperImpl(applicationName, rootAppDirectory);
+            return installHelpers.CreateUninstallerRegistryEntry();*/
+            return Task.Run(() => RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Default).CreateSubKey(@"Software\" + "\\" + applicationName, RegistryKeyPermissionCheck.ReadWriteSubTree));
         }
 
         public void RemoveUninstallerRegistryEntry()
@@ -113,8 +115,8 @@ namespace Squirrel
 
         public void CreateShortcutsForExecutable(string exeName, ShortcutLocation locations, bool updateOnly, string programArguments = null, string icon = null)
         {
-            var installHelpers = new ApplyReleasesImpl(rootAppDirectory);
-            installHelpers.CreateShortcutsForExecutable(exeName, locations, updateOnly, programArguments, icon);
+            /*var installHelpers = new ApplyReleasesImpl(rootAppDirectory);
+            installHelpers.CreateShortcutsForExecutable(exeName, locations, updateOnly, programArguments, icon);*/
         }
 
         public Dictionary<ShortcutLocation, ShellLink> GetShortcutsForExecutable(string exeName, ShortcutLocation locations, string programArguments = null)
