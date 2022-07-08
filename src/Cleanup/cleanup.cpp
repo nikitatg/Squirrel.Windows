@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <fstream>
 #include <atlbase.h>
 
 
@@ -12,8 +13,28 @@ int main(int argc, char** argv)
 		if (key.Open(HKEY_CURRENT_USER, L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall", KEY_WRITE) != ERROR_SUCCESS) {
 			std::cout << "Can't open uninstall path in registry" << std::endl;
 		}
-		if (key.DeleteSubKey(L"TeleGuard") != ERROR_SUCCESS) {
-			std::cout << "Can't delete TeleGuard key registry" << std::endl;
+		else {
+			if (key.DeleteSubKey(L"TeleGuard") != ERROR_SUCCESS) {
+				std::cout << "Can't delete TeleGuard key registry" << std::endl;
+			}
+		}
+		if (key.Open(HKEY_CURRENT_USER, L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\93443beb-f105-47fe-bac0-709583ac44cb_is1", KEY_WRITE) != ERROR_SUCCESS) {
+			std::cout << "Can't update version in registry" << std::endl;
+		}
+		else {
+			std::string ver = argv[2];
+			std::string beta = "-beta";
+			std::string betaver = ver + beta;
+			key.SetStringValue(L"DisplayVersion", CA2W(betaver.c_str()));
+		}
+		if (strcmp(argv[1], "--squirrel-updated") == 0) {
+			char filename[] = "..\\app.version";
+			std::fstream fversion(filename, std::ofstream::out | std::ofstream::trunc);
+			if (!fversion) {
+				std::cout << "File not exist" << std::endl;
+			}
+			fversion << argv[2];
+			fversion.close();
 		}
 	}
 	else {
