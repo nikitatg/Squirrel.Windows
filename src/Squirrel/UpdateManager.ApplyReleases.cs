@@ -53,14 +53,14 @@ namespace Squirrel
                     "Failed to install package to app dir");
 
                 progress(80);
-
+                
                 var currentReleases = await this.ErrorIfThrows(() => updateLocalReleasesFile(),
                     "Failed to update local releases file");
 
                 progress(85);
 
                 var newVersion = currentReleases.MaxBy(x => x.Version).First().Version;
-                executeSelfUpdate(newVersion);
+                //executeSelfUpdate(newVersion);
 
                 progress(90);
 
