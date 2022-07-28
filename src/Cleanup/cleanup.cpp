@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 			key.SetStringValue(L"DisplayVersion", CA2W(betaver.c_str()));
 		}
 		if (strcmp(argv[1], "--squirrel-updated") == 0) {
-			char filename[] = "..\\app.version";
+			char filename[] = "app.version";
 			std::fstream fversion(filename, std::ofstream::out | std::ofstream::trunc);
 			if (!fversion) {
 				std::cout << "File not exist" << std::endl;
