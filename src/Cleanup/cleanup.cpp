@@ -19,13 +19,12 @@ int main(int argc, char** argv)
 			}
 		}
 		if (key.Open(HKEY_CURRENT_USER, L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\93443beb-f105-47fe-bac0-709583ac44cb_is1", KEY_WRITE) != ERROR_SUCCESS) {
+			// for Business:: 173a1c4d-c0b9-4806-a5fa-80a12a563f87_is1
 			std::cout << "Can't update version in registry" << std::endl;
 		}
 		else {
 			std::string ver = argv[2];
-			std::string beta = "-beta";
-			std::string betaver = ver + beta;
-			key.SetStringValue(L"DisplayVersion", CA2W(betaver.c_str()));
+			key.SetStringValue(L"DisplayVersion", CA2W(ver.c_str()));
 		}
 		if (strcmp(argv[1], "--squirrel-updated") == 0) {
 			char filename[] = "app.version";
