@@ -527,6 +527,7 @@ namespace Squirrel
                 this.Log().Info("Old iconPath is: '{0}'", shortcut.IconPath);
                 shortcut.IconPath = target;
                 shortcut.IconIndex = 0;
+                shortcut.SetAppUserModelId("com.squirrel.teleguard_desktop.TeleGuard");
 
                 this.ErrorIfThrows(() => Utility.Retry(() => shortcut.Save(), 2), "Couldn't write shortcut " + shortcut.ShortCutFile);
                 this.Log().Info("Finished shortcut successfully");
