@@ -42,11 +42,11 @@ namespace Squirrel
             this.urlDownloader = urlDownloader ?? new FileDownloader();
 
             if (rootDirectory != null) {
-                this.rootAppDirectory = Path.Combine(rootDirectory, this.applicationName);
+                this.rootAppDirectory = Path.Combine(rootDirectory, this.applicationName) + '\\';
                 return;
             }
 
-            this.rootAppDirectory = Path.Combine(rootDirectory ?? GetLocalAppDataDirectory(), this.applicationName);
+            this.rootAppDirectory = Path.Combine(rootDirectory ?? GetLocalAppDataDirectory(), this.applicationName) + '\\';
         }
 
         public async Task<UpdateInfo> CheckForUpdate(bool ignoreDeltaUpdates = false, Action<int> progress = null, UpdaterIntention intention = UpdaterIntention.Update)

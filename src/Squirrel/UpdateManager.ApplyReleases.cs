@@ -60,7 +60,7 @@ namespace Squirrel
                 progress(85);
 
                 var newVersion = currentReleases.MaxBy(x => x.Version).First().Version;
-                //executeSelfUpdate(newVersion);
+                executeSelfUpdate(newVersion);
 
                 progress(90);
 
@@ -477,7 +477,7 @@ namespace Squirrel
                 });
 
                 var shellLinks = (new DirectoryInfo(taskbarPath)).GetFiles("*.lnk").Select(resolveLink).ToArray();
-
+                this.Log().Info("rootAppDirectory is {0}", rootAppDirectory);
                 foreach (var shortcut in shellLinks) {
                     try {
                         if (shortcut == null) continue;
